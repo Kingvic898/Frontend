@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signinincon from "../assets/signinicon.jpg"; // Ensure the path is correct
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || "";
+
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
@@ -20,7 +22,7 @@ export default function SignIn() {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/signin", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
